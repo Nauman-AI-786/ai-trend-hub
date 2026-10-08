@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tools Hub - Trending 2026</title>
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --text-color: #1e293b;
+            --card-bg: #ffffff;
+            --header-bg: #0f172a;
+            --nav-text: #ffffff;
+            --desc-color: #64748b;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --text-color: #f8fafc;
+            --card-bg: #1e293b;
+            --header-bg: #020617;
+            --nav-text: #38bdf8;
+            --desc-color: #94a3b8;
+        }
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: var(--bg-color); 
+            color: var(--text-color);
+            margin: 0; padding: 0; 
+            transition: background 0.3s, color 0.3s;
+        }
+
+        header { 
+            background: var(--header-bg); 
+            color: white; padding: 15px 30px; 
+            display: flex; justify-content: space-between; align-items: center; 
+            flex-wrap: wrap; gap: 15px;
+        }
+
+        header nav { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
+        header nav a { color: var(--nav-text); text-decoration: none; font-weight: 600; }
+        header nav a:hover { color: #38bdf8; }
+
+        .btn-add { background: #10b981; color: white !important; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-weight: bold; }
+        .theme-btn { background: #3b82f6; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+
+        .hero { text-align: center; padding: 50px 20px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; }
+        .hero h1 { font-size: 32px; margin-bottom: 10px; }
+        
+        /* Search Bar for Easy Use */
+        .search-box { margin-top: 20px; }
+        .search-box input { width: 80%; max-width: 400px; padding: 12px; border-radius: 25px; border: none; font-size: 16px; outline: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+
+        .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+        
+        /* Featured Section Banner */
+        .featured-banner { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 20px; border-radius: 10px; margin-bottom: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .featured-banner h3 { margin: 0 0 10px 0; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        
+        .card { 
+            background: var(--card-bg); 
+            padding: 20px; border-radius: 10px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+            border-top: 4px solid #3b82f6; 
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: translateY(-5px); }
+        .card h3 { margin-top: 0; color: var(--text-color); }
+        .card p { color: var(--desc-color); font-size: 14px; }
+        
+        .badge { background: #e0f2fe; color: #0369a1; padding: 4px 8px; font-size: 11px; border-radius: 4px; font-weight: bold; }
+        [data-theme="dark"] .badge { background: #0369a1; color: #e0f2fe; }
+
+        footer { text-align: center; padding: 20px; color: var(--desc-color); margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
+    </style>
+</head>
+<body data-theme="light">
+
+    <header>
+        <h2>🚀 AI Trend Hub</h2>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/add" class="btn-add">+ Add Tool</a>
+            <a href="/about">About Us</a>
+            <button class="theme-btn" onclick="toggleTheme()">🌓 Dark/Light</button>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>Discover Best AI Tools</h1>
+        <p>Aapki zaroorat ke sab se behtareen artificial intelligence tools ek hi jagah par.</p>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Koi bhi AI tool search karein..." onkeyup="searchTools()">
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Featured Tool Section -->
+        <div class="featured-banner">
+            <span>🔥 Featured #1 Tool</span>
+            <h3>ChatGPT - Ultimate AI Assistant</h3>
+            <p style="color: white; margin: 5px 0 0 0;">Dunya ka sab se zyada istamal hone wala powerful AI tool jo coding, writing aur brainstorming mein madad karta hai.</p>
+        </div>
+
+        <h2>Trending Tools Directory</h2>
+        <div class="grid" id="toolsGrid">
+            {% for tool in tools %}
+            <div class="card">
+                <span class="badge">{{ tool.category }}</span>
+                <h3>{{ tool.name }}</h3>
+                <p>{{ tool.desc }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 AI Trend Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            if (body.getAttribute("data-theme") === "light") {
+                body.setAttribute("data-theme", "dark");
+            } else {
+                body.setAttribute("data-theme", "light");
+            }
+        }
+
+        // Search Filter for Ease of Use
+        function searchTools() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('card');
+            
+            for (let i = 0; i < cards.length; i++) {
+                let title = cards[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
+                let desc = cards[i].getElementsByTagName('p')[0].innerText.toLowerCase();
+                
+                if (title.includes(input) || desc.includes(input)) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>

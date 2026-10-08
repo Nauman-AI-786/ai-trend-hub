@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New AI Tool - AI Trend Hub</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8fafc; margin: 0; padding: 0; }
+        header { background: #0f172a; color: white; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; }
+        header nav a { color: white; margin-left: 20px; text-decoration: none; font-weight: 600; }
+        header nav a:hover { color: #38bdf8; }
+        .container { max-width: 500px; margin: 50px auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        h2 { color: #1e293b; margin-top: 0; }
+        label { display: block; margin-top: 15px; font-weight: 600; color: #475569; }
+        input, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #cbd5e1; border-radius: 5px; box-sizing: border-box; font-size: 14px; }
+        button { background: #3b82f6; color: white; border: none; padding: 12px 20px; margin-top: 20px; width: 100%; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; }
+        button:hover { background: #1d4ed8; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h2>🚀 AI Trend Hub</h2>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About Us</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Add a New AI Tool</h2>
+        <form method="POST">
+            <label>Tool Name:</label>
+            <input type="text" name="name" placeholder="Misal ke taur par: Claude AI" required>
+
+            <label>Category:</label>
+            <input type="text" name="category" placeholder="Misal ke taur par: Text & Coding" required>
+
+            <label>Description:</label>
+            <textarea name="desc" rows="4" placeholder="Tool ke baare mein chand lafz..." required></textarea>
+
+            <button type="submit">Publish Tool</button>
+        </form>
+    </div>
+
+</body>
+</html>
