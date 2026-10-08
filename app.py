@@ -19,16 +19,16 @@ class Tool(db.Model):
 
 # Database tables create karna aur initial data dalna
 with app.app_context():
+    db.drop_all()  # Yeh purana database saaf kar dega
     db.create_all()
     if Tool.query.count() == 0:
         initial_tools = [
             Tool(name="ChatGPT", category="Text & Coding", desc="Dunya ka sab se mashhoor AI assistant jo har sawal ka jawab deta hai.", url="https://chatgpt.com"),
-            Tool(name="Midjourney", category="Image Generation", desc="Behtareen realistic tasveerein banane ke liye AI tool.", url="https://midjourney.com"),
+            Tool(name="Midjourney", category="Image Generation", desc="Behtareen realistic tasveerein banane ke liye AI tool.", url="https://www.midjourney.com"),
             Tool(name="Notion AI", category="Productivity", desc="Notes aur writing ko automate karne ke liye workspace.", url="https://www.notion.so")
         ]
         db.session.add_all(initial_tools)
         db.session.commit()
-
 @app.route("/")
 def home():
     tools = Tool.query.all()
